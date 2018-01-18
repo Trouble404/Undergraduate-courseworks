@@ -1,0 +1,8 @@
+2015/5/16  16:43:33
+Login Success:  Account: 123  Password: 123456
+2015/5/16  16:44:50
+Logout successfully as Ordinary user!
+2015/5/16  16:45:41
+Login Success:  Account: 123  Password: 123456
+2015/5/16  16:47:9
+Login Success:  Account: 12  Password: 123456

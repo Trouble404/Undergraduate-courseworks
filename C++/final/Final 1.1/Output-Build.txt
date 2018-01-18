@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: Final 1.1, Configuration: Debug Win32 ------
+1>  student.cpp
+1>  Final 1.1.vcxproj -> F:\EEE102\final\Final 1.1\Debug\Final 1.1.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

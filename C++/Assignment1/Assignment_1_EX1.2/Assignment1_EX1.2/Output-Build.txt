@@ -1,0 +1,5 @@
+﻿1>------ Build started: Project: Assignment1_EX1.2, Configuration: Debug Win32 ------
+1>  EXERCISE1.cpp
+1>c:\users\junming.zhang13\desktop\assignment1_ex1.2\assignment1_ex1.2\exercise1.cpp(19): warning C4018: '<' : signed/unsigned mismatch
+1>  Assignment1_EX1.2.vcxproj -> C:\Users\Junming.Zhang13\Desktop\Assignment1_EX1.2\Debug\Assignment1_EX1.2.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

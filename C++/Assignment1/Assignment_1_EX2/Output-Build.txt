@@ -1,0 +1,6 @@
+﻿1>------ Build started: Project: Assignment_1_EX2, Configuration: Debug Win32 ------
+1>  EXERCISE 2.cpp
+1>c:\users\junming.zhang13\desktop\assignment_1_ex2\assignment_1_ex2\exercise 2.cpp(24): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+1>c:\users\junming.zhang13\desktop\assignment_1_ex2\assignment_1_ex2\exercise 2.cpp(26): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+1>  Assignment_1_EX2.vcxproj -> C:\Users\Junming.Zhang13\Desktop\Assignment_1_EX2\Debug\Assignment_1_EX2.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

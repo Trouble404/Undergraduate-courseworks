@@ -1,0 +1,263 @@
+#include <iostream>
+#include <string>
+#include <time.h>
+#include "container.h"
+#include "player.h"
+#include "swordsman.h"
+#include "archer.h"
+#include "magicman.h"
+
+using namespace std;
+
+//=======================
+//		main.cpp
+//=======================
+
+// main function for the RPG style game
+
+
+int main()
+{
+	srand((int)time(0));// set up the seeds of time
+	string tempName;
+	bool success=0;		//flag for storing whether operation is successful
+	cout <<"Please input player's name: ";
+	cin >>tempName;		// get player's name from keyboard input
+	player *human;		// use pointer of base class, convenience for polymorphism
+	int tempJob;		// temp choice for job selection
+	do
+	{
+		cout <<"Please choose a job: 1 Swordsman, 2 Archer, 3 Mage"<<endl;
+		cin>>tempJob;
+		system("cls");		// clear the screen
+		switch(tempJob)
+		{
+		case 1:
+			human=new swordsman(1,tempName);	// create the character with user inputted name and job
+			success=1;		// operation succeed
+			break;
+		case 2:
+			human=new archer(1,tempName);
+			success=1;
+			break;
+		case 3:
+			human=new magicman(1,tempName);
+			success=1;
+			break;
+		default:
+			break;				// In this case, success=0, character creation failed
+		}
+	}while(success!=1);		// so the loop will ask user to re-create a character
+
+	int tempCom;			// temp command inputted by user
+	int nOpp=0;		// the Nth opponent
+	int choose = 0;
+
+    for(int i=1;nOpp<5;i+=2)	// i is opponent's level
+	{
+		nOpp++;
+		system("cls");
+
+		choose = rand()%3+1;// use 1~3 to choose the job of enemy
+		if(choose == 1)
+		  {
+		    cout<<"STAGE" <<nOpp<<endl;
+	    	cout<<"Your opponent, a Level "<<i<<" Swordsman."<<endl;
+	    	system("pause");
+	    	swordsman enemy(i, "Warrior");	// Initialise an opponent, level i, name "Junior"
+	    	human->reFill();				// get HP/MP refill before start fight
+		
+		while(!human->death() && !enemy.death())	// no died
+		{
+			success=0;
+			while (success!=1)
+			{
+				showinfo(*human,enemy);				// show fighter's information
+				cout<<"Please give command: "<<endl;
+				cout<<"1 Attack; 2 Special Attack; 3 Use Heal; 4 Use Magic Water; 0 Exit Game"<<endl;
+				cin>>tempCom;
+				switch(tempCom)
+				{
+				case 0:
+					cout<<"Are you sure to exit? Y/N"<<endl;
+					char temp;
+					cin>>temp;
+					if(temp=='Y'||temp=='y')
+						return 0;
+					else
+						break;
+				case 1:
+					success=human->attack(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 2:
+					success=human->specialatt(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 3:
+					success=human->useHeal();
+					break;
+				case 4:
+					success=human->useMW();
+					break;
+				default:
+					break;
+				}
+			}
+			if(!enemy.death())		// If AI still alive
+				enemy.AI(*human);
+			else							// AI died
+			{
+				cout<<"YOU WIN"<<endl;
+				human->transfer(enemy);		// player got all AI's items
+			}
+			if (human->death())
+			{
+				system("cls");
+				cout<<endl<<setw(50)<<"GAME OVER"<<endl;
+				delete human;	//Blank 6: delete the data of player	// player is dead, program is getting to its end, what should we do here?
+				system("pause");
+				return 0;
+			}
+		}
+		}
+
+		if(choose == 2)
+		{
+		cout<<"STAGE" <<nOpp<<endl;
+		cout<<"Your opponent, a Level "<<i<<" Archer."<<endl;
+		system("pause");
+		archer enemy(i, "Archer");	// Initialise an opponent, level i, name "Archer"
+		human->reFill();				// get HP/MP refill before start fight
+		
+		while(!human->death() && !enemy.death())	// no died
+		{
+			success=0;
+			while (success!=1)
+			{
+				showinfo(*human,enemy);				// show fighter's information
+				cout<<"Please give command: "<<endl;
+				cout<<"1 Attack; 2 Special Attack; 3 Use Heal; 4 Use Magic Water; 0 Exit Game"<<endl;
+				cin>>tempCom;
+				switch(tempCom)
+				{
+				case 0:
+					cout<<"Are you sure to exit? Y/N"<<endl;
+					char temp;
+					cin>>temp;
+					if(temp=='Y'||temp=='y')
+						return 0;
+					else
+						break;
+				case 1:
+					success=human->attack(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 2:
+					success=human->specialatt(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 3:
+					success=human->useHeal();
+					break;
+				case 4:
+					success=human->useMW();
+					break;
+				default:
+					break;
+				}
+			}
+			if(!enemy.death())		// If AI still alive
+				enemy.AI(*human);
+			else							// AI died
+			{
+				cout<<"YOU WIN"<<endl;
+				human->transfer(enemy);		// player got all AI's items
+			}
+			if (human->death())
+			{
+				system("cls");
+				cout<<endl<<setw(50)<<"GAME OVER"<<endl;
+				delete human;	//Blank 6: delete the data of player	// player is dead, program is getting to its end, what should we do here?
+				system("pause");
+				return 0;
+			}
+		}
+		}
+
+		if(choose == 3)
+		{
+		cout<<"STAGE" <<nOpp<<endl;
+		cout<<"Your opponent, a Level "<<i<<" Magicman."<<endl;
+		system("pause");
+		magicman enemy(i, "Mage");	// Initialise an opponent, level i, name "Mage"
+		human->reFill();				// get HP/MP refill before start fight
+		
+		while(!human->death() && !enemy.death())	// no died
+		{
+			success=0;
+			while (success!=1)
+			{
+				showinfo(*human,enemy);				// show fighter's information
+				cout<<"Please give command: "<<endl;
+				cout<<"1 Attack; 2 Special Attack; 3 Use Heal; 4 Use Magic Water; 0 Exit Game"<<endl;
+				cin>>tempCom;
+				switch(tempCom)
+				{
+				case 0:
+					cout<<"Are you sure to exit? Y/N"<<endl;
+					char temp;
+					cin>>temp;
+					if(temp=='Y'||temp=='y')
+						return 0;
+					else
+						break;
+				case 1:
+					success=human->attack(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 2:
+					success=human->specialatt(enemy);
+					human->isLevelUp();
+					enemy.isDead();
+					break;
+				case 3:
+					success=human->useHeal();
+					break;
+				case 4:
+					success=human->useMW();
+					break;
+				default:
+					break;
+				}
+			}
+			if(!enemy.death())		// If AI still alive
+				enemy.AI(*human);
+			else							// AI died
+			{
+				cout<<"YOU WIN"<<endl;
+				human->transfer(enemy);		// player got all AI's items
+			}
+			if (human->death())
+			{
+				system("cls");
+				cout<<endl<<setw(50)<<"GAME OVER"<<endl;
+				delete human;	//Blank 6: delete the data of player	// player is dead, program is getting to its end, what should we do here?
+				system("pause");
+				return 0;
+			}
+		}
+		}
+
+	}
+     //Blank 7:	may create a file to store winner's name		// You win, program is getting to its end, what should we do here?
+	system("cls");
+	cout<<"Congratulations! You defeated all opponents!!"<<endl;
+	system("pause");
+	return 0;
+}

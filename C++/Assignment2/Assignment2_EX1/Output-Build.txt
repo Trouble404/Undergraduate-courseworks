@@ -1,0 +1,4 @@
+﻿1>------ Build started: Project: Assignment2_EX1, Configuration: Debug Win32 ------
+1>  EXERCISE 1.cpp
+1>  Assignment2_EX1.vcxproj -> F:\EEE102\Assignment2_EX1\Debug\Assignment2_EX1.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

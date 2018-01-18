@@ -1,0 +1,8 @@
+﻿  student.cpp
+  SelCourse.cpp
+  menu.cpp
+  manager.cpp
+  main.cpp
+  course.cpp
+  正在生成代码...
+LINK : fatal error LNK1207: “E:\My documents\EEE102\final\TEST\Debug\TEST.pdb”中的 PDB 格式不兼容；请删除并重新生成
